@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/12 17:53:32 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/13 13:23:15 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/13 14:22:30 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,47 +19,48 @@ class ErrorValue(Exception):
 
 
 class ErrorInput(Exception):
-    def __init__(self, message=None):
+    def __init__(self, message="No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ..."):
         super().__init__(message)
 
 
-def valid_score(score: str) -> None:
+def valid_score(score: str) -> int:
     try:
-        score = int(score)
-    except:
+        return int(score)
+    except ValueError:
         raise ErrorValue("Invalid parameter: ")
 
 
-def parse_scores() -> list:
-    score_list = sys.argv[1:]
-    for score in score_list:
+def parse_scores() -> list[int]:
+    raw_score = sys.argv[1:]
+    if len(raw_score) == 0:
+        raise ErrorInput
+    score_list: list[int] = []
+    for score in raw_score:
         try:
-            valid_score(score)
+            score_list.append(valid_score(score))
         except ErrorValue as e:
             print(e, "'", score, "'", sep="")
+    if len(score_list) == 0:
+        raise ErrorInput
     return score_list
-
-
-def error_managment() -> None:
-    scores = parse_scores()
-    if len(scores) < 5:
-        raise ErrorInput("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
 
 
 def ft_score_analytics() -> None:
     try:
-        error_managment()
-        score_list = []
-        for score in sys.argv[1:]:
-            score = int(score)
-            score_list.append(score)
+        score_list = parse_scores()
         print("Scores processed:", score_list)
-        print("Total players:", len(score_list))
-        avg = sum(score_list) / len(score_list)
-        print("Average score:", avg)
-        print("High score:", max(score_list))
-        print("Low score:", min(score_list))
-        print("Score range:", (max(score_list) - (min(score_list))))
+        len_scores = len(score_list)
+        sum_score = sum(score_list)
+        avg_score = sum_score / len_scores
+        min_score = min(score_list)
+        max_score = max(score_list)
+        range_score = max_score - min_score
+        print("Total players:", len_scores)
+        print("Total score: ", sum_score)
+        print("Average score:", avg_score)
+        print("High score:", max_score)
+        print("Low score:", min_score)
+        print("Score range:", range_score)
     except ErrorInput as e:
         print(e)
 

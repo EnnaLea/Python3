@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/12 17:53:32 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/13 14:25:32 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/14 11:48:26 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ class ErrorValue(Exception):
 
 
 class ErrorInput(Exception):
-    def __init__(self, message="No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ..."):
+    def __init__(self, message="No scores provided. Usage:"
+                 " python3 ft_score_analytics.py <score1> <score2> ..."):
         super().__init__(message)
 
 

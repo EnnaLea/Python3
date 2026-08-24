@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/19 22:30:51 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/20 01:11:44 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/24 10:42:38 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ def max_and_min(inventory: dict) -> None:
     print(f"Item least abundant: {min_key} with quantity {min_val}")
 
 
-def main():
+def main() -> None:
     print("=== Inventory System Analysis ===\n")
     inventory = insert_item()
     if inventory:
@@ -95,6 +95,8 @@ def main():
         tot_items(inventory)
         perc_list(inv_list, inventory)
         max_and_min(inventory)
+        inventory["magic_item"] = 1
+        print("Updated inventory:", inventory)
     else:
         print("Inventory is empty")
 

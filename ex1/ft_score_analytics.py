@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/12 17:53:32 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/14 11:48:26 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/24 10:33:24 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ import sys
 
 
 class ErrorValue(Exception):
-    def __init__(self, message=None):
+    def __init__(self, message: str | None = None) -> None:
         super().__init__(message)
 
 
 class ErrorInput(Exception):
-    def __init__(self, message="No scores provided. Usage:"
-                 " python3 ft_score_analytics.py <score1> <score2> ..."):
+    def __init__(self, message: str = "No scores provided. Usage:"
+                 " python3 ft_score_analytics.py <score1> <score2> ...") -> None:
         super().__init__(message)
 
 
@@ -66,7 +66,7 @@ def ft_score_analytics() -> None:
         print(e)
 
 
-def main():
+def main() -> None:
     print("=== Player Score Analytics ===")
     ft_score_analytics()
 

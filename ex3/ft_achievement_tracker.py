@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/17 18:34:51 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/19 19:10:12 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/24 10:39:19 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,10 @@ def gen_player_achievements() -> set:
                    'Boss Slayer', 'Hidden Path Finder',]
     num_achiv = random.randint(0, 14)
     achiv = []
-    for i in range(1, num_achiv + 1):
+    i = 0
+    while i < num_achiv:
         achiv.append(achivements[random.randint(0, 13)])
+        i += 1
     set_achiv = set(achiv)
     return set_achiv
 
@@ -48,7 +50,7 @@ def missing_achiv(player: set, tot_achiv: set) -> set:
     return tot_achiv.difference(player)
 
 
-def main():
+def main() -> None:
     print("=== Achievement Tracker System ===\n")
     alice = gen_player_achievements()
     bob = gen_player_achievements()

@@ -6,7 +6,7 @@
 #    By: ealiman <ealiman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/14 11:48:48 by ealiman           #+#    #+#              #
-#    Updated: 2026/08/17 18:30:31 by ealiman          ###   ########.fr        #
+#    Updated: 2026/08/24 10:37:05 by ealiman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ def get_player_pos() -> tuple:
     while True:
         pos = input("Enter new coordinates as float in format: 'x,y,z':").strip()
         li_pos = pos.split(",")
-        if len(li_pos) != 3:
+        count = 0
+        for _ in li_pos:
+            count += 1
+        if count != 3:
             print("Invalid sintax")
             continue
         conv_in_flat = True
@@ -51,7 +54,7 @@ def distance_between_point(firs_coord: tuple, second_coord: tuple) -> float:
     return round_dis
 
 
-def main():
+def main() -> None:
     print("=== Game Coordinate System ===\n")
     print("Get a first set of coordinates")
     firs_coord = get_player_pos()
